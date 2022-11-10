@@ -39,7 +39,7 @@ function HomeScreen() {
     const temp = [];
     setQuery(text);
     allProducts.forEach(function (childSnapshot) {
-      if (childSnapshot.category.includes(text)) {
+      if (childSnapshot.category.toLowerCase().includes(text.toLowerCase())) {
         temp.push(childSnapshot);
       }
     });

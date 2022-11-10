@@ -51,6 +51,13 @@ export default function Tabs() {
               title: "Manage Orders",
             },
           ]);
+        }else{
+          setRoutes([
+            {
+              key: "first",
+              title: "Orders",
+            }
+          ]);
         }
       });
     });
