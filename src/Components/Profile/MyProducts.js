@@ -45,7 +45,7 @@ const MyProducts = () => {
         <Pressable
             onPress={() => navigation.navigate("Single", item)}
             key={item.pId}
-            w="47%"
+            w="180"
             marginRight={4}
             bg={Colors.white}
             rounded="md"
