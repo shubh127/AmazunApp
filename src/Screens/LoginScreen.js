@@ -96,13 +96,14 @@ function LoginScreen({ navigation }) {
             color={Colors.main}
             borderBottomColor={Colors.underline}
             value={email}
+            fontSize = "20"
             onChangeText={text => setEmail(text)}
           />
-          {/* PASSWORD */}
           <Input
             InputLeftElement={
               <Ionicons name="eye" size={20} color={Colors.main} />
             }
+            fontSize = "20"
             variant="underlined"
             placeholder="*********"
             w="70%"

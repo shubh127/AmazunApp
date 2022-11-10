@@ -8,6 +8,7 @@ import MyProducts from "./MyProducts";
 import React, { useEffect, useState } from "react";
 import { getDatabase, ref, onValue } from 'firebase/database';
 import ManageOrders from "./ManageOrders";
+import { getAuth } from "firebase/auth";
 
 const renderScene = SceneMap({
   first: Orders,
@@ -32,32 +33,34 @@ export default function Tabs() {
     onValue(reference, (snapshot) => {
       snapshot.forEach(function (childSnapshot) {
         const userData = childSnapshot.val();
-        if (userData.userType === "admin") {
-          setRoutes([
-            {
-              key: "first",
-              title: "Orders",
-            },
-            {
-              key: "second",
-              title: "Add Product",
-            },
-            {
-              key: "third",
-              title: "My Products",
-            },
-            {
-              key: "fourth",
-              title: "Manage Orders",
-            },
-          ]);
-        }else{
-          setRoutes([
-            {
-              key: "first",
-              title: "Orders",
-            }
-          ]);
+        if (userData.email.toLowerCase() === getAuth().currentUser?.email.toLowerCase()) {
+          if (userData.userType === "admin") {
+            setRoutes([
+              {
+                key: "first",
+                title: "Orders",
+              },
+              {
+                key: "second",
+                title: "Add Product",
+              },
+              {
+                key: "third",
+                title: "My Products",
+              },
+              {
+                key: "fourth",
+                title: "Manage Orders",
+              },
+            ]);
+          } else {
+            setRoutes([
+              {
+                key: "first",
+                title: "Orders",
+              }
+            ]);
+          }
         }
       });
     });
