@@ -39,10 +39,14 @@ function LoginScreen({ navigation }) {
   }, []);
 
   const handleSignUp = () => {
-    createUserWithEmailAndPassword(getAuth(), email, password)
-      .then(
-        saveToDB()
-      ).catch(error => alert(error.message));
+    if (email === "" || password === "") {
+      alert("Email or password cannot be empty!!!");
+    } else {
+      createUserWithEmailAndPassword(getAuth(), email, password)
+        .then(
+          saveToDB()
+        ).catch(error => alert(error.message));
+    }
   }
 
   const saveToDB = () => {
@@ -53,8 +57,11 @@ function LoginScreen({ navigation }) {
   }
 
   const handleLogin = () => {
-    signInWithEmailAndPassword(getAuth(), email, password)
-      .then().catch(error => alert(error.message));
+    if (email === "" || password === "") {
+      alert("Email or password cannot be empty!!!");
+    } else
+      signInWithEmailAndPassword(getAuth(), email, password)
+        .then().catch(error => alert(error.message));
   }
 
   return (
