@@ -35,7 +35,7 @@ function SingleProductScreen({ route }) {
       <ScrollView px={5} showsVerticalScrollIndicator={false}>
         <Image
           source={{ uri: product.imageURL }}
-          alt="Image"
+          alt="https://res.cloudinary.com/zpune/image/upload/v1645429478/random/user_u3itjd.png"
           w="full"
           h={300}
           resizeMode="contain"

@@ -9,7 +9,6 @@ import {
 } from "native-base";
 import React, { useEffect, useState } from "react";
 import { getDatabase, ref, onValue } from 'firebase/database';
-import { getAuth } from "firebase/auth";
 import Colors from "../color";
 import { StyleSheet } from 'react-native';
 
@@ -24,9 +23,7 @@ const BoughtProducts = () => {
         onValue(reference, (snapshot) => {
             const temp = [];
             snapshot.forEach(function (childSnapshot) {
-                if (childSnapshot.val().order[0].owner === getAuth().currentUser?.email) {
-                    temp.push(childSnapshot.val());
-                }
+                temp.push(childSnapshot.val());
             });
             setOrders(temp);
             setAllOrders(temp);
@@ -37,7 +34,7 @@ const BoughtProducts = () => {
         const temp = [];
         setQuery(text);
         allOrders.forEach(function (childSnapshot) {
-            if (childSnapshot.oId.toString().includes(text)) {
+            if (childSnapshot.placedBy.toString().toLowerCase().includes(text.toLowerCase())) {
                 temp.push(childSnapshot);
             }
         });
@@ -49,41 +46,46 @@ const BoughtProducts = () => {
     }, []);
 
     const renderItem = ({ item }) => (
-        <HStack
-            marginX="2"
+        <View marginX="2"
             mt="4"
-            justifyContent="space-between"
-            alignItems="center"
             borderColor={Colors.lightBlack}
             borderWidth="1"
             borderRadius="4"
             bg={Colors.deepGray}
             py={5}
-            px={2}
-        >
-            <Text fontSize={10} color={Colors.blue} isTruncated>
-                {item.oId}
+            px={2}>
+            <Text fontSize={16} color={Colors.black} isTruncated bold="true">
+                Order By- {item.placedBy}
             </Text>
-            <Text fontSize={12} bold color={Colors.black} isTruncated>
-                {item.status}
-            </Text>
-            <Text fontSize={11} italic color={Colors.black} isTruncated>
-                {new Date(item.oId).toLocaleDateString()}
-            </Text>
-            <Button
-                px={7}
-                py={1.5}
-                rounded={50}
-                bg={Colors.main}
-                _text={{
-                    color: Colors.white,
-                }}
-                _pressed={{
-                    bg: Colors.main,
-                }}
-            >{"$ " + item.order[0].amount}
-            </Button>
-        </HStack>
+            <HStack
+                mt="4"
+                justifyContent="space-between"
+                alignItems="center"
+            >
+                <Text fontSize={14} color={Colors.blue} isTruncated>
+                    {item.oId}
+                </Text>
+                <Text fontSize={12} bold color={Colors.black} isTruncated>
+                    {item.status}
+                </Text>
+                <Text fontSize={11} italic color={Colors.black} isTruncated>
+                    {new Date(item.oId).toLocaleDateString()}
+                </Text>
+                <Button
+                    px={7}
+                    py={1.5}
+                    rounded={50}
+                    bg={Colors.main}
+                    _text={{
+                        color: Colors.white,
+                    }}
+                    _pressed={{
+                        bg: Colors.main,
+                    }}
+                >{"$ " + item.order[0].amount}
+                </Button>
+            </HStack>
+        </View>
     );
 
     return (
@@ -91,7 +93,7 @@ const BoughtProducts = () => {
             <Input
                 value={query}
                 onChangeText={text => onSearchTextChanged(text)}
-                placeholder="Enter category name to find products"
+                placeholder="Enter email to search orders"
                 w="92%"
                 bg={Colors.white}
                 margin={4}

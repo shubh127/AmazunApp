@@ -1,6 +1,5 @@
 import {
   FlatList,
-  Flex,
   HStack,
   Text,
   View,

@@ -20,7 +20,7 @@ function HomeScreen() {
   const navigation = useNavigation();
   const [products, setProducts] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
-  const [query, setQuery] = useState([]);
+  const [query, setQuery] = useState("");
 
   const getProductsFromDB = () => {
     const db = getDatabase();
@@ -65,8 +65,8 @@ function HomeScreen() {
       overflow="hidden"
     >
       <Image
+        alt="https://res.cloudinary.com/zpune/image/upload/v1645429478/random/user_u3itjd.png"
         source={{ uri: item.imageURL }}
-        alt={item.name}
         w="full"
         h={24}
         resizeMode="contain"

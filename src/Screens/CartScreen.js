@@ -54,6 +54,7 @@ function CartScreen() {
       >
         <Center w="25%" bg={Colors.deepGray}>
           <Image
+            alt="https://res.cloudinary.com/zpune/image/upload/v1645429478/random/user_u3itjd.png"
             source={{ uri: item.product.imageURL }}
             w="full"
             h={24}

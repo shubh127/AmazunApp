@@ -12,8 +12,10 @@ import Colors from "../../color";
 import { getDatabase, ref, onValue, remove } from 'firebase/database';
 import { getAuth } from "firebase/auth";
 import { Button } from 'react-native';
+import { useNavigation } from "@react-navigation/native";
 
 const MyProducts = () => {
+    const navigation = useNavigation();
     const [products, setProducts] = useState([]);
 
     const getProductsFromDB = () => {
@@ -43,7 +45,7 @@ const MyProducts = () => {
 
     const renderItem = ({ item }) => (
         <Pressable
-            onPress={() => navigation.navigate("Single", item)}
+            onPress={() => navigation.navigate("ProductSaleStatus", item)}
             key={item.pId}
             w="180"
             marginRight={4}
@@ -57,7 +59,7 @@ const MyProducts = () => {
         >
             <Image
                 source={{ uri: item.imageURL }}
-                alt={item.name}
+                alt="https://res.cloudinary.com/zpune/image/upload/v1645429478/random/user_u3itjd.png"
                 w="full"
                 h={24}
                 resizeMode="contain"

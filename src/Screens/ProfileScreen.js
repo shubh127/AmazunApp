@@ -17,6 +17,7 @@ function ProfileScreen({ navigation }) {
     <>
       <Center bg={Colors.main} pt={10} pb={6}>
         <Image
+          mt={10}
           source={{
             uri: "https://res.cloudinary.com/zpune/image/upload/v1645429478/random/user_u3itjd.png",
           }}

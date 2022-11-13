@@ -1,4 +1,3 @@
-import { View, Text } from "react-native";
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "../Screens/HomeScreen";
@@ -7,6 +6,7 @@ import ShippingScreen from "../Screens/ShippingScreen";
 import PaymentScreen from "../Screens/PaymentScreen";
 import PlaceOrderScreen from "../Screens/PlaceOrderScreen";
 import BoughtProducts from "../Screens/BoughtProducts";
+import ProductSaleStatus from "../Screens/ProductSaleStatus";
 
 const Stack = createNativeStackNavigator();
 const StackNav = () => {
@@ -23,6 +23,7 @@ const StackNav = () => {
       <Stack.Screen name="Checkout" component={PaymentScreen} />
       <Stack.Screen name="Placeorder" component={PlaceOrderScreen} />
       <Stack.Screen name="BoughtProducts" component={BoughtProducts} />
+      <Stack.Screen name="ProductSaleStatus" component={ProductSaleStatus} />
     </Stack.Navigator>
   );
 };
